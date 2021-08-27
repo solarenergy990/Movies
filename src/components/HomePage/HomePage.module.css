@@ -1,0 +1,94 @@
+.section {
+  padding-top: 20px;
+  padding-bottom: 40px;
+
+  @media screen and (min-width: 768px) {
+    padding-top: 45px;
+    padding-bottom: 35px;
+  }
+}
+
+.galleryContainer {
+  width: 320px;
+  margin-right: auto;
+  margin-left: auto;
+  align-content: center;
+}
+@media screen and (min-width: 768px) {
+  .galleryContainer {
+    width: 768px;
+    padding: 0px 60px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .galleryContainer {
+    width: 1024px;
+    padding-left: 56px;
+    padding-right: 56px;
+  }
+}
+
+.gallery {
+  /* @media screen and (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: -15px;
+  } */
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: -15px;
+}
+.galleryItemCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-basis: calc((100% - 3 * 30px) / 3);
+  margin: 15px;
+}
+
+.galleryItemCard:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.card {
+  position: relative;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+}
+
+.posterContainer {
+  position: relative;
+  width: 280px;
+  height: 398px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  object-fit: contain;
+  overflow: hidden;
+  filter: drop-shadow(4px 4px 4px rgba(55%, 55%, 55%, 0.6));
+  box-shadow: 0 0 20px rgba(55%, 55%, 55%, 0.5);
+
+  width: 274px;
+}
+.posterContainer:hover,
+.posterContainer:hover {
+  transition: 250ms;
+  box-shadow: 0 0 20px rgba(250, 119, 12, 0.897);
+}
+
+.textTitle {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
+  text-transform: uppercase;
+}
+
+.textGenre {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  color: #ff6b08;
+}
