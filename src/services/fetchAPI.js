@@ -24,4 +24,15 @@ ${BASE_URL}/3/genre/movie/list?api_key=${API_KEY}&language=en-US`;
     });
 };
 
-export { fetchPopularMovies, fetchGenres };
+const fetchMoviesBySearch = (searchQuery, page) => {
+  const url = `
+
+${BASE_URL}/3/search/movie?api_key=${API_KEY}&language=en-US&query=${searchQuery}&page=${page}&include_adult=false`;
+  return fetch(url).then(response => {
+    if (response.ok) {
+      return response.json();
+    }
+  });
+};
+
+export { fetchPopularMovies, fetchGenres, fetchMoviesBySearch };

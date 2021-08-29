@@ -1,0 +1,20 @@
+.form {
+  text-align: center;
+}
+
+.input {
+  display: inline-block;
+  width: 500px;
+  font: inherit;
+  font-size: 20px;
+  border: 1px solid black;
+  outline: none;
+  padding-left: 4px;
+  padding-right: 4px;
+  margin-bottom: 30px;
+}
+
+.input::placeholder {
+  font: inherit;
+  font-size: 18px;
+}

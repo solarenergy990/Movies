@@ -1,15 +1,16 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import s from '../Header/Header.module.css';
 
 const Header = () => {
   return (
     <header className={s.header}>
-      <button type="button" className={s.link}>
+      <NavLink to="/" className={s.link} activeClassName={s.activeLink} exact>
         Home
-      </button>
-      <button type="button" className={s.link}>
+      </NavLink>
+      <NavLink to="/search" className={s.link} activeClassName={s.activeLink}>
         Search
-      </button>
+      </NavLink>
     </header>
   );
 };
