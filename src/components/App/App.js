@@ -10,6 +10,9 @@ import Container from '../Container/Container';
 
 const HomePage = lazy(() => import('../HomePage/HomePage'));
 const MoviesPage = lazy(() => import('../MoviesPage/MoviesPage'));
+const MovieDetailsPage = lazy(() =>
+  import('../MovieDetailsPage/MovieDetailsPage'),
+);
 
 const App = () => {
   return (
@@ -26,8 +29,11 @@ const App = () => {
           <Route path="/" exact>
             <HomePage />
           </Route>
-          <Route path="/search" exact>
+          <Route path="/movies" exact>
             <MoviesPage />
+          </Route>
+          <Route path="/movies/:movieId">
+            <MovieDetailsPage />
           </Route>
           <Redirect to="/" />
         </Switch>

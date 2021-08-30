@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import s from '../MoviesPage/MoviesPage.module.css';
-import LoadMore from '../LoadMore/LoadMore';
+
 import { fetchGenres, fetchMoviesBySearch } from '../../services/fetchAPI';
 
 import MoviesList from '../../views/MoviesList';
+import LoadMore from '../LoadMore/LoadMore';
 
 import scrollDown from '../../utils/scrollDown';
 
@@ -21,14 +22,11 @@ const MoviesPage = () => {
     new URLSearchParams(location.search).get('searchQuery') ?? '';
 
   useEffect(() => {
-    console.log(searchUrl);
     if (searchUrl === '') {
       return;
     }
     fetchMoviesBySearch(searchUrl, page)
       .then(response => {
-        console.log(response);
-        console.log(searchUrl);
         return response;
       })
       .then(data => setMovies(prevMovies => [...prevMovies, ...data.results]))
@@ -42,7 +40,6 @@ const MoviesPage = () => {
 
   useEffect(() => {
     fetchGenres().then(response => {
-      //   console.log(response);
       setGenres(prevGenres => [...prevGenres, ...response]);
     });
   }, []);
@@ -50,16 +47,19 @@ const MoviesPage = () => {
   const onHandleSubmit = evt => {
     evt.preventDefault();
 
-    if (searchUrl === '') {
+    if (searchQuery === '') {
       return;
     }
+
     setPage(1);
     setMovies([]);
 
-    // history.push({
-    //   ...location,
-    //   search: `query=${searchQuery}`,
-    // });
+    history.push({
+      ...location,
+      search: `searchQuery=${searchQuery}`,
+    });
+
+    setSearchQuery('');
   };
 
   const onHandleChange = evt => {
@@ -73,10 +73,14 @@ const MoviesPage = () => {
   return (
     <div>
       <form className={s.form} onSubmit={onHandleSubmit}>
-        <input className={s.input} onChange={onHandleChange} />
-        <button type="submit">find</button>
+        <input
+          className={s.input}
+          onChange={onHandleChange}
+          value={searchQuery}
+          name={searchQuery}
+        />
       </form>
-      <MoviesList movies={movies} genres={genres} />
+      <MoviesList movies={movies} genres={genres} location={location} />
       {movies.length > 20 && <LoadMore onClick={onLoadMore} />}
     </div>
   );

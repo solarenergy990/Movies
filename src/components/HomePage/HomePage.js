@@ -2,6 +2,7 @@ import React from 'react';
 import s from '../HomePage/HomePage.module.css';
 import { useState, useEffect } from 'react';
 import { fetchPopularMovies, fetchGenres } from '../../services/fetchAPI';
+import { useLocation } from 'react-router-dom';
 
 import MoviesList from '../../views/MoviesList';
 
@@ -14,13 +15,9 @@ const HomePage = () => {
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
 
+  const location = useLocation();
   useEffect(() => {
     fetchPopularMovies(page)
-      .then(response => {
-        // console.log(response);
-        return response;
-      })
-
       .then(data => setMovies(prevMovies => [...prevMovies, ...data.results]))
       .then(() => {
         if (page > 1) {
@@ -32,7 +29,6 @@ const HomePage = () => {
 
   useEffect(() => {
     fetchGenres().then(response => {
-      //   console.log(response);
       setGenres(prevGenres => [...prevGenres, ...response]);
     });
   }, []);
@@ -44,7 +40,7 @@ const HomePage = () => {
   return (
     <div>
       <section className={s.section}>
-        <MoviesList movies={movies} genres={genres} />
+        <MoviesList movies={movies} genres={genres} location={location} />
         <LoadMore onClick={onLoadMore} />
       </section>
     </div>
